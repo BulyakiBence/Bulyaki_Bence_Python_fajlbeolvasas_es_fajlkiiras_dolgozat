@@ -54,7 +54,7 @@ for i in pilotak:
 
 print(f"4. A legtöbb futamot teljesített versenyző: {legtobb_futam["nev"]}")
 #5.feladat
-print(f"5. Az átlagos futamszám: {statistics.mean(i["futamok"] for i in pilotak)}")
+print(f"5. Az átlagos futamszám: {statistics.mean(i["futamok"] for i in pilotak):.2f}")
 
 
 #6.feladat (szorg)
@@ -78,5 +78,5 @@ with open('kiirt_adatok/statisztika.txt', 'w', encoding='utf-8') as celfajl:
     celfajl.write(f"2. A legtöbb futamot nyert versenyző: {legtobb_gyoz["nev"]}\n")
     celfajl.write(f"3. A legkevesebb futamot nyert versenyzők: {legkevesebb_gyoz["nev"]} és {legkevesebb_gyoz_2["nev"]}\n")
     celfajl.write(f"4. A legtöbb futamot teljesített versenyző: {legtobb_futam["nev"]}\n")
-    celfajl.write(f"5. Az átlagos futamszám: {statistics.mean(i["futamok"] for i in pilotak)}\n")
+    celfajl.write(f"5. Az átlagos futamszám: {statistics.mean(i["futamok"] for i in pilotak):.2f}\n")
     celfajl.write(f"***A legtöbb futamgyőzelmet szerző csapat: {legtobb_csapat}")
