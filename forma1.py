@@ -40,7 +40,11 @@ for i in pilotak:
     if legkevesebb_gyoz["gyozszam"] > i["gyozszam"]:
         legkevesebb_gyoz = i
 
-print(f"3. A legkevesebb futamot nyert versenyző: {legkevesebb_gyoz["nev"]}")
+legkevesebb_gyoz_2 = pilotak[0]        
+for i in pilotak:
+    if legkevesebb_gyoz_2["gyozszam"] >= i["gyozszam"]:
+        legkevesebb_gyoz_2 = i
+print(f"3. A legkevesebb futamot nyert versenyzők: {legkevesebb_gyoz["nev"]} és {legkevesebb_gyoz_2["nev"]}")
 #4.feladat
 
 legtobb_futam = pilotak[0]
@@ -52,4 +56,19 @@ print(f"4. A legtöbb futamot teljesített versenyző: {legtobb_futam["nev"]}")
 #5.feladat
 print(f"5. Az átlagos futamszám: {statistics.mean(i["futamok"] for i in pilotak)}")
 
-print("***A legtöbb futamgyőzelmet szerző csapat: ____")
+
+#6.feladat (szorg)
+csapat_gyoz = {}
+
+for pilota in pilotak:
+    csapat = pilota['csapat']
+    gyoz = pilota['gyozszam']
+
+if csapat not in csapat_gyoz:
+        csapat_gyoz[csapat] = gyoz
+else:
+        csapat_gyoz[csapat] += gyoz
+
+legtobb_csapat = max(csapat_gyoz, key=csapat_gyoz.get)
+
+print(f"***A legtöbb futamgyőzelmet szerző csapat: {legtobb_csapat}")
