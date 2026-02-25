@@ -12,11 +12,44 @@ Olvasd be az f1.txt adatait, majd oldd meg az alábbi feladatokat!
 
 A megoldott feladatokat a kiirt_adatok nevű mappába hozd létre statisztika.txt néven!
 """
+import statistics
+pilotak = []
+with open('beolvasando_adatok/f1.txt', 'r', encoding='utf-8') as forrasfajl:
+    next(forrasfajl)
+    for sor in forrasfajl:
+        adatok = sor.strip().split(';')
+        nev = adatok[0]
+        csapat = adatok[1]
+        gyozszam = int(adatok[2])
+        futamok = int(adatok[3])
+        pilota = {'nev': nev, 'csapat': csapat, 'gyozszam': gyozszam, 'futamok': futamok}
+        pilotak.append(pilota)
 
+#1. feladat
+print(f"1. A beolvasott fájlban összesen {len(pilotak)} versenyző szerepel.")
 
-print("1. A beolvasott fájlban összesen ____ versenyző szerepel.")
-print("2. A legtöbb futamot nyert versenyző: ____")
-print("3. A legkevesebb futamot nyert versenyző: ____")
-print("4. A legtöbb futamot teljesített versenyző: ____")
-print("5. Az átlagos futamszám: ____")
+#2. feladat
+legtobb_gyoz = pilotak[0]
+for i in pilotak:
+    if legtobb_gyoz["gyozszam"] < i["gyozszam"]:
+        legtobb_gyoz = i
+print(f"2. A legtöbb futamot nyert versenyző: {legtobb_gyoz["nev"]}")
+#3.feladat
+legkevesebb_gyoz = pilotak[0]
+for i in pilotak:
+    if legkevesebb_gyoz["gyozszam"] > i["gyozszam"]:
+        legkevesebb_gyoz = i
+
+print(f"3. A legkevesebb futamot nyert versenyző: {legkevesebb_gyoz["nev"]}")
+#4.feladat
+
+legtobb_futam = pilotak[0]
+for i in pilotak:
+    if legtobb_futam["futamok"] < i["futamok"]:
+        legtobb_futam = i
+
+print(f"4. A legtöbb futamot teljesített versenyző: {legtobb_futam["nev"]}")
+#5.feladat
+print(f"5. Az átlagos futamszám: {statistics.mean(i["futamok"] for i in pilotak)}")
+
 print("***A legtöbb futamgyőzelmet szerző csapat: ____")
